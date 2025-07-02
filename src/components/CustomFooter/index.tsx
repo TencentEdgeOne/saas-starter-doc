@@ -57,12 +57,12 @@ export function CustomFooter() {
             { new Date().getFullYear() }
           </span>
           <UnderlineLink
-            link="https://github.com/pdsuwwz"
+            link="https://github.com/TencentEdgeOne"
             label={(
               <>
                 <span className="animate-[heartbeat_1.5s_infinite] mr-[3px]">❤️</span>
                 {' '}
-                Wisdom
+                EdgeOne Pages
               </>
             )}
           />
