@@ -22,7 +22,7 @@ export const metadata = {
   // Define your metadata here
   // For more information on metadata API, see: https://nextjs.org/docs/app/building-your-application/optimizing/metadata
   metadataBase: new URL('https://nextjs-nextra-starter-green.vercel.app'),
-  icons: '/img/favicon.svg',
+  icons: '/img/favicon.ico',
 } satisfies Metadata
 
 const repo = 'https://github.com/TencentEdgeOne/saas-starter'
