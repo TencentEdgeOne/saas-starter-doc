@@ -16,6 +16,7 @@ export default withNextra({
   eslint: {
     ignoreDuringBuilds: true,
   },
+  output: 'export',
   reactStrictMode: true,
   cleanDistDir: true,
   i18n: {
