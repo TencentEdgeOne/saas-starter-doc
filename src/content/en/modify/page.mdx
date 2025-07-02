@@ -1,0 +1,70 @@
+# Page
+
+>Since the project is built using Next.js's static export, the method of adding pages is the same as adding static pages in Next.js.
+
+## AI Assistance
+You can directly add or modify pages in the Cursor editor through conversation.
+
+Example prompt:
+```
+Add a testimonial page to the project
+```
+> The Cursor editor will automatically select existing components to build the page based on the project structure.
+
+## Manual Addition
+
+### 1. Create Page File
+
+Create a new page file in the `src/app/[lang]` directory:
+
+```bash
+# Create a single page
+src/app/[lang]/about/page.tsx          # About page (/about)
+src/app/[lang]/contact/page.tsx        # Contact page (/contact)
+src/app/[lang]/services/page.tsx       # Services page (/services)
+
+# Create nested pages
+src/app/[lang]/blog/page.tsx           # Blog list page (/blog)
+src/app/[lang]/blog/[slug]/page.tsx    # Blog detail page (/blog/post-title)
+src/app/[lang]/products/[id]/page.tsx  # Product detail page (/products/product-id)
+```
+
+### 2. Page File Structure
+
+Each page file should include the following basic structure:
+
+```tsx
+// src/app/[lang]/about/page.tsx
+import { Metadata } from 'next'
+import { Layout } from '@/components/layout'
+import { Hero } from '@/components/sections'
+import { getDictionary } from '@/lib/dictionaries'
+import { Locale } from '@/lib/i18n'
+
+interface AboutPageProps {
+  params: { lang: Locale }
+}
+
+export default async function AboutPage({ params: { lang } }: AboutPageProps) {
+  const dict = await getDictionary(lang)
+  
+  return (
+    <Layout dict={dict}>
+      {/* Add more content components */}
+    </Layout>
+  )
+}
+```
+
+
+### Notes
+
+- All page components must use `"use client"` if they include client-side interaction
+- Use the `SectionLayout` component to maintain page layout consistency
+- Prioritize using existing components, avoiding duplicate components
+- Ensure all translation files include the same key names
+- Follow the project's TypeScript type definitions
+- Use existing Tailwind CSS class names to maintain style consistency
+- Use `getHighlightedText` to handle highlighted text
+- All pages must support dark mode
+

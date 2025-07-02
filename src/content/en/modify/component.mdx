@@ -1,0 +1,72 @@
+# Component
+
+This document introduces the component development guide and best practices for the SaaS Starter project.
+
+## AI-Assisted Modification
+You can directly add or modify components in the Cursor editor through dialogue.
+
+Example prompt:
+```
+Add a step-by-step usage component to the project
+```
+
+
+## Manual Addition
+### Adding Files
+Add component files according to the component type in the corresponding folder.
+
+The project's components are organized by functionality and purpose in the following directories:
+
+```
+src/components/
+├── layout/         # Layout-related components
+│   ├── layout.tsx           # Main layout component
+│   ├── header.tsx          # Header component
+│   ├── footer.tsx          # Footer component
+│   └── section-layout.tsx  # Section layout component
+├── sections/       # Page section components
+│   ├── hero.tsx            # Hero component
+│   ├── features.tsx        # Features component
+│   ├── content-section.tsx # Content section component
+│   ├── cta-section.tsx     # Call-to-action component
+│   ├── testimonials.tsx    # Testimonials component
+│   └── faq.tsx            # FAQ component
+└── ui/            # Basic UI components
+    ├── button.tsx          # Button component
+    ├── badge.tsx           # Badge component
+    ├── stats-section.tsx   # Stats section component
+    └── features-grid.tsx   # Features grid component
+```
+
+
+### Best Practices
+
+#### 1. Component Reusability
+
+- Prioritize using existing components to avoid redundant development
+- Extend component functionality through props
+- Use composition patterns to build complex interfaces
+
+#### 2. Type Safety
+
+- Define TypeScript interfaces for all components
+- Use strict type checking
+- Export necessary type definitions
+
+#### 3. Style Guidelines
+
+- Use Tailwind CSS utility classes
+- Follow responsive design principles
+- Maintain consistent spacing and color systems
+
+#### 4. Performance Optimization
+
+- Use Next.js image optimization
+- Implement component lazy loading
+- Avoid unnecessary re-renders
+
+#### 5. Internationalization
+
+- Use the `dict` property to pass translation text
+- Support RTL layout
+- Keep text configurable

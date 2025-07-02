@@ -1,0 +1,16 @@
+# SEO
+
+SEO is crucial for obtaining organic search traffic. The project includes many SEO optimizations that can be implemented through simple configuration.
+
+## Metadata
+You can modify the `metadata` property in `dictionaries/[locale].json`.
+
+## Robots.txt and Sitemap
+The project provides scripts to automatically generate `robots.txt` and `sitemap.xml`.
+
+Simply modify the `SITE_URL` in the `gen:seo` command in `package.json` to your own site URL.
+
+Then run:
+```npm run gen:seo```
+
+The project will automatically generate new `robots.txt` and `sitemap.xml` files.

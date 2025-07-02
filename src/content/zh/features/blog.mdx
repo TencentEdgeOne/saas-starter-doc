@@ -1,0 +1,92 @@
+# 内容管理
+
+## 本地内容管理
+项目支持直接在本地管理内容，使用 markdown 文件进行博客与案例内容管理。
+
+### 博客文章
+在 `content/blog/` 中创建新博客文章，带有前言：
+
+```markdown
+---
+title: "你的博客文章标题"
+date: "2024-01-15"
+excerpt: "你的文章简短描述"
+author: "你的名字"
+tags: ["SaaS", "Next.js", "教程"]
+readTime: "5 分钟读取"
+---
+
+# 你的博客文章内容
+
+在这里用 Markdown 写你的内容...
+```
+
+### 案例研究
+在 `content/cases/` 中创建新案例：
+```markdown
+---
+title: "案例标题"
+description: "案例描述"
+image: "/images/cases/case1.png"
+externalUrl: "https://example.com"
+tags: ["AI", "音乐", "创意"]
+---
+
+```
+
+## CMS 集成
+> 为了方便管理与协作，项目也支持拉取 CMS数据，目前仅支持了 Contentful CMS 的内容集成，后续将支持更多常用 CMS。
+### Contentful
+#### 1. 配置 Contentful 空间
+##### 1. 注册 Contenful 并创建空间
+如果你还没有 Contentful 空间，请先：
+- 注册 [Contentful 账户](https://www.contentful.com/sign-up/)
+- 创建新的空间 (Space)
+
+##### 2. 安装 contentful CLI 并登录
+安装：
+```bash
+npm install -g contentful-cli
+```
+登录：
+```bash
+contentful login
+```
+
+##### 3. 导入数据模型
+项目默认提供了博客和案例所需要的数据类型，可以直接导入到 Contentful 进行使用。
+```bash
+# 在项目根目录运行
+contentful space import --content-file cms/contentful/contentful-models-config.json --space-id 你的空间id
+```
+
+##### 4. 创建数据
+进入 Contentful 控制台，创建你需要的新内容。
+
+#### 2. 配置环境变量
+在本地仓库创建 `.env` 文件并设置你的 Contentful 配置：
+
+```bash
+CONTENTFUL_SPACE_ID=your_space_id_here
+CONTENTFUL_ACCESS_TOKEN=your_access_token_here
+CONTENTFUL_ENVIRONMENT=master
+```
+
+**获取访问令牌**：
+- 进入 Contentful 控制台
+- 选择你的空间 → Settings → API keys
+- 创建或使用现有的 Content Delivery API key
+
+#### 3. 修改 dev 和 build 命令
+进入项目的`package.json`,修改 dev 和 build 命令如下：
+```json
+...
+"scripts": {
+  ...
+  "dev": "npm run contentful:export && next dev",
+  "build": "npm run contentful:export && next build",
+}
+...
+```
+#### 4. 预览效果
+执行`npm run dev`即可看到项目同步到你在 `Contentful` 创建的内容。

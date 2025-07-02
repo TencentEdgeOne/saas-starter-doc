@@ -1,0 +1,252 @@
+# Section Components
+
+This document introduces the section components in SaaS Starter. These components are located in the `src/components/sections/` directory and are used to build the main content blocks of pages.
+
+## Hero
+
+Hero banner section component:
+
+```tsx
+import { Hero } from "@/components/sections/hero";
+
+<Hero
+  dict={dict}
+  params={params}
+  showTrustBar={true}
+/>
+```
+
+### Props
+- `dict` - Internationalization dictionary object
+- `params` - Route parameters
+- `showTrustBar` - Whether to show the trust bar
+
+### Variants
+- Left-aligned layout
+- Center-aligned layout
+- Right-aligned layout
+
+## Features
+
+Feature showcase section:
+
+```tsx
+import { Features } from "@/components/sections/features";
+
+<Features
+  dict={dict}
+  variant="grid"
+  columns={3}
+/>
+```
+
+### Props
+- `dict` - Internationalization dictionary object
+- `variant` - Layout variant (grid/list)
+- `columns` - Number of grid columns
+
+### Features
+- Responsive grid layout
+- Icon support
+- Animation effects
+- Custom styling
+
+## ContentSection
+
+Content display section:
+
+```tsx
+import { ContentSection } from "@/components/sections/content-section";
+
+<ContentSection
+  title="Section Title"
+  description="Section Description"
+  image="/path/to/image.jpg"
+  imagePosition="right"
+/>
+```
+
+### Props
+- `title` - Section title
+- `description` - Section description
+- `image` - Image path
+- `imagePosition` - Image position (left/right)
+
+### Layout Options
+- Image and text side-by-side layout
+- Text-only layout
+- Background image layout
+
+## CTASection
+
+Call-to-action section:
+
+```tsx
+import { CTASection } from "@/components/sections/cta-section";
+
+<CTASection
+  dict={dict}
+  variant="primary"
+  showBackground={true}
+/>
+```
+
+### Variants
+- `PrimaryCTA` - Primary style
+- `GradientCTA` - Gradient background
+- `MinimalCTA` - Minimal style
+
+### Props
+- `dict` - Internationalization dictionary object
+- `variant` - Style variant
+- `showBackground` - Whether to show background
+
+## FAQ
+
+Frequently asked questions section:
+
+```tsx
+import { FAQ } from "@/components/sections/faq";
+
+<FAQ
+  dict={dict}
+  columns={2}
+  expandFirst={true}
+/>
+```
+
+### Props
+- `dict` - Internationalization dictionary object
+- `columns` - Number of columns
+- `expandFirst` - Whether to expand the first item
+
+### Features
+- Collapsible panels
+- Search filtering
+- Category display
+
+## Testimonials
+
+User testimonials section:
+
+```tsx
+import { Testimonials } from "@/components/sections/testimonials";
+
+<Testimonials
+  dict={dict}
+  variant="grid"
+  autoplay={true}
+/>
+```
+
+### Props
+- `dict` - Internationalization dictionary object
+- `variant` - Display style (grid/slider)
+- `autoplay` - Whether to autoplay
+
+### Features
+- Grid layout
+- Carousel display
+- Responsive design
+
+## Best Practices
+
+### Section Combination Guide
+
+1. Homepage Layout Example
+```tsx
+export default function HomePage({ params }) {
+  const dict = await getDictionary(params.lang);
+  
+  return (
+    <Layout dict={dict}>
+      <Hero dict={dict} params={params} />
+      <Features dict={dict} />
+      <ContentSection {...contentProps} />
+      <Testimonials dict={dict} />
+      <FAQ dict={dict} />
+      <CTASection dict={dict} />
+    </Layout>
+  );
+}
+```
+
+2. Product Page Example
+```tsx
+<Layout dict={dict}>
+  <Hero variant="product" />
+  <Features columns={4} />
+  <ContentSection imagePosition="left" />
+  <PricingSection />
+  <TestimonialsSlider />
+  <GradientCTA />
+</Layout>
+```
+
+### Performance Optimization
+
+1. Image Handling
+- Use appropriate image formats
+- Implement lazy loading
+- Provide responsive images
+
+2. Animation Effects
+- Use CSS animations
+- Implement progressive enhancement
+- Consider reducing animations
+
+3. Content Loading
+- Implement progressive loading
+- Optimize above-the-fold content
+- Use placeholders
+
+### Responsive Design
+
+1. Layout Adaptation
+- Use fluid layouts
+- Adapt to different screens
+- Adjust content density
+
+2. Image Handling
+- Use responsive images
+- Adjust image sizes
+- Optimize mobile display
+
+3. Interaction Optimization
+- Adapt for touch operations
+- Optimize form experience
+- Adjust button sizes
+
+### Accessibility
+
+1. Semantic Tags
+- Use correct HTML tags
+- Add ARIA labels
+- Provide alternative text
+
+2. Keyboard Operation
+- Support keyboard navigation
+- Set logical focus order
+- Provide keyboard shortcuts
+
+3. Color Contrast
+- Ensure text readability
+- Provide sufficient contrast
+- Support high contrast mode
+
+### Internationalization Support
+
+1. Text Translation
+- Use dictionary files
+- Support dynamic content
+- Handle long text
+
+2. Image Localization
+- Provide localized images
+- Adapt for different languages
+- Consider cultural differences
+
+3. Layout Adjustment
+- Support text direction
+- Handle character length
+- Adapt for different fonts 

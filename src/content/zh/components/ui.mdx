@@ -1,0 +1,303 @@
+# UI 组件
+
+本文档介绍了 SaaS Starter 中的基础 UI 组件。这些组件位于 `src/components/ui/` 目录下。
+
+## 按钮组件
+
+### Button
+主要的按钮组件，支持多种变体：
+
+```tsx
+import { Button } from "@/components/ui/button";
+
+// 默认按钮
+<Button>默认按钮</Button>
+
+// 主要按钮
+<Button variant="primary">主要按钮</Button>
+
+// 渐变按钮
+<Button variant="gradient">渐变按钮</Button>
+
+// 链接按钮
+<Button variant="link">链接按钮</Button>
+```
+
+#### 变体选项
+- `default` - 默认样式
+- `destructive` - 危险操作
+- `outline` - 轮廓样式
+- `secondary` - 次要按钮
+- `ghost` - 幽灵按钮
+- `link` - 链接样式
+- `gradient` - 渐变样式
+- `primary` - 主要按钮
+- `success` - 成功状态
+- `warning` - 警告状态
+
+### PrimaryButton
+预设的主要按钮组件：
+
+```tsx
+import { PrimaryButton } from "@/components/ui/button";
+
+<PrimaryButton>主要按钮</PrimaryButton>
+```
+
+### GradientButton
+预设的渐变按钮组件：
+
+```tsx
+import { GradientButton } from "@/components/ui/button";
+
+<GradientButton>渐变按钮</GradientButton>
+```
+
+## 卡片组件
+
+### Card
+标准卡片组件套件：
+
+```tsx
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+
+<Card>
+  <CardHeader>
+    <CardTitle>标题</CardTitle>
+    <CardDescription>描述文本</CardDescription>
+  </CardHeader>
+  <CardContent>
+    卡片内容
+  </CardContent>
+</Card>
+```
+
+### Badge
+标签和状态指示器：
+
+```tsx
+import { Badge } from "@/components/ui/badge";
+
+// 默认标签
+<Badge>默认</Badge>
+
+// 成功状态
+<Badge variant="success">成功</Badge>
+
+// 警告状态
+<Badge variant="warning">警告</Badge>
+```
+
+## 内容展示组件
+
+### BlogCard
+博客文章预览卡片：
+
+```tsx
+import { BlogCard } from "@/components/ui/blog-card";
+
+<BlogCard
+  title="文章标题"
+  description="文章描述"
+  date="2024-03-20"
+  author="作者名"
+  image="/path/to/image.jpg"
+/>
+```
+
+### FeatureCard
+功能特性展示卡片：
+
+```tsx
+import { FeatureCard } from "@/components/ui/feature-card";
+
+<FeatureCard
+  icon="Zap"
+  title="快速部署"
+  description="只需几分钟即可完成部署"
+/>
+```
+
+### TestimonialsGrid
+用户评价网格：
+
+```tsx
+import { TestimonialsGrid } from "@/components/ui/testimonials-grid";
+
+<TestimonialsGrid
+  testimonials={[
+    {
+      content: "评价内容",
+      author: "用户名",
+      role: "职位",
+      avatar: "/path/to/avatar.jpg"
+    }
+  ]}
+/>
+```
+
+## 表单组件
+
+### ContactForm
+联系表单组件：
+
+```tsx
+import { ContactForm } from "@/components/ui/contact-form";
+
+<ContactForm
+  onSubmit={async (data) => {
+    // 处理表单提交
+  }}
+/>
+```
+
+### CompactContactForm
+紧凑型联系表单：
+
+```tsx
+import { CompactContactForm } from "@/components/ui/contact-form";
+
+<CompactContactForm
+  onSubmit={async (data) => {
+    // 处理表单提交
+  }}
+/>
+```
+
+## 数据展示组件
+
+### StatsSection
+数据统计展示：
+
+```tsx
+import { StatsSection } from "@/components/ui/stats-section";
+
+<StatsSection
+  stats={[
+    { label: "活跃用户", value: "10k+" },
+    { label: "下载次数", value: "1M+" },
+    { label: "客户评分", value: "4.9/5" }
+  ]}
+/>
+```
+
+### CompanyStats
+公司数据统计：
+
+```tsx
+import { CompanyStats } from "@/components/ui/company-stats";
+
+<CompanyStats
+  stats={[
+    { label: "成立年限", value: "10+" },
+    { label: "服务客户", value: "1000+" },
+    { label: "团队规模", value: "100+" }
+  ]}
+/>
+```
+
+## 交互组件
+
+### FAQList
+常见问题列表：
+
+```tsx
+import { FAQList } from "@/components/ui/faq-list";
+
+<FAQList
+  items={[
+    {
+      question: "如何开始使用？",
+      answer: "按照文档说明进行安装和配置..."
+    }
+  ]}
+/>
+```
+
+### FeaturesGrid
+功能特性网格：
+
+```tsx
+import { FeaturesGrid } from "@/components/ui/features-grid";
+
+<FeaturesGrid
+  features={[
+    {
+      icon: "Zap",
+      title: "快速部署",
+      description: "简单几步即可完成部署"
+    }
+  ]}
+/>
+```
+
+### PricingTable
+价格表格：
+
+```tsx
+import { PricingTable } from "@/components/ui/pricing-table";
+
+<PricingTable
+  plans={[
+    {
+      name: "基础版",
+      price: "¥99",
+      features: ["特性1", "特性2"]
+    }
+  ]}
+/>
+```
+
+### Toast
+通知提示系统：
+
+```tsx
+import { useToast } from "@/components/ui/toast";
+
+const { toast } = useToast();
+
+// 显示成功提示
+toast({
+  title: "操作成功",
+  description: "您的更改已保存",
+  variant: "success"
+});
+```
+
+## 最佳实践
+
+### 组件复用优先级
+1. 直接使用现有组件
+2. 通过属性扩展现有组件
+3. 创建现有组件的变体
+4. 仅在必要时创建新组件
+
+### 样式指南
+- 使用 Tailwind CSS 类
+- 使用 `cn()` 工具处理条件样式
+- 遵循项目配色方案
+- 保持响应式设计
+
+### TypeScript 使用
+- 为所有属性定义接口
+- 导出类型定义
+- 使用类型推断
+- 扩展现有接口
+
+### 性能优化
+- 使用适当的加载策略
+- 优化图片加载
+- 实现合适的缓存策略
+- 最小化包体积
+
+### 辅助功能
+- 添加适当的 ARIA 标签
+- 确保键盘可访问性
+- 提供适当的颜色对比度
+- 支持屏幕阅读器 

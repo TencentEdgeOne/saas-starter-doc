@@ -25,28 +25,7 @@ export const metadata = {
   icons: '/img/favicon.svg',
 } satisfies Metadata
 
-const repo = 'https://github.com/pdsuwwz/nextjs-nextra-starter'
-
-const CustomBanner = async ({ lang }: I18nLangAsyncProps) => {
-  const { t } = await useServerLocale(lang)
-  return (
-    <Banner
-      storageKey="starter-banner"
-    >
-      <div className="flex justify-center items-center gap-1">
-        { t('banner.title') }
-        {' '}
-        <a
-          className="max-sm:hidden text-warning hover:underline"
-          target="_blank"
-          href={repo}
-        >
-          { t('banner.more') }
-        </a>
-      </div>
-    </Banner>
-  )
-}
+const repo = 'https://github.com/TencentEdgeOne/saas-starter'
 
 
 const CustomNavbar = async ({ lang }: I18nLangAsyncProps) => {
@@ -130,9 +109,6 @@ export default async function RootLayout({ children, params }: Props) {
           disableTransitionOnChange
         >
           <Layout
-            banner={
-              <CustomBanner lang={lang} />
-            }
             navbar={
               <CustomNavbar lang={lang} />
             }
@@ -142,7 +118,7 @@ export default async function RootLayout({ children, params }: Props) {
               </LastUpdated>
             )}
             editLink={null}
-            docsRepositoryBase="https://github.com/pdsuwwz/nextjs-nextra-starter"
+            docsRepositoryBase="https://github.com/TencentEdgeOne/saas-starter"
             footer={(
               <Footer className="bg-background py-5!">
                 <CustomFooter />

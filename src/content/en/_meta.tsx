@@ -3,33 +3,22 @@ import { TitleBadge } from '@/components/TitleBadge'
 
 export default {
   index: {
-    type: 'page',
-    display: 'hidden',
-    theme: {
-      timestamp: false,
-      layout: 'full',
-      toc: false,
-    },
+    title: 'Introduction',
   },
-  introduction: {
-    type: 'page',
-    title: 'This is Introduction',
-    theme: {
-      navbar: true,
-      toc: false,
-    },
+  'quick-start': {
+    title: 'Quick Start',
   },
-  docs: {
-    title: '📦 Some Examples',
-    type: 'page',
+  modify: {
+    title: 'Development',
+    // type: 'page',
   },
-  upgrade: {
-    title: (
-      <span className="flex items-center leading-[1]">
-        What's New
-        <TitleBadge />
-      </span>
-    ),
-    type: 'page',
+  features: {
+    title: 'Features',
+  },
+  components: {
+    title: 'Components',
+  },
+  deploy: {
+    title: 'Deploy',
   },
 } satisfies MetaRecord

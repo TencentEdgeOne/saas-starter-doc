@@ -1,0 +1,70 @@
+# 页面
+
+>项目基于 Next.js 的静态导出搭建，因此添加页面的方法与 Next.js 添加静态页面的方法一致。
+
+## AI 辅助
+你可以在 Cursor 编辑器直接对话添加或修改页面。
+
+示例 prompt:
+```
+给项目添加一个testimonial页面
+```
+> Cursor 编辑器会根据项目结构自动选用已有的组件构建页面
+
+## 手动添加
+
+### 1. 创建页面文件
+
+在 `src/app/[lang]` 目录下创建新的页面文件：
+
+```bash
+# 创建单个页面
+src/app/[lang]/about/page.tsx          # 关于页面 (/about)
+src/app/[lang]/contact/page.tsx        # 联系页面 (/contact)
+src/app/[lang]/services/page.tsx       # 服务页面 (/services)
+
+# 创建嵌套页面
+src/app/[lang]/blog/page.tsx           # 博客列表页 (/blog)
+src/app/[lang]/blog/[slug]/page.tsx    # 博客详情页 (/blog/post-title)
+src/app/[lang]/products/[id]/page.tsx  # 产品详情页 (/products/product-id)
+```
+
+### 2. 页面文件结构
+
+每个页面文件应包含以下基本结构：
+
+```tsx
+// src/app/[lang]/about/page.tsx
+import { Metadata } from 'next'
+import { Layout } from '@/components/layout'
+import { Hero } from '@/components/sections'
+import { getDictionary } from '@/lib/dictionaries'
+import { Locale } from '@/lib/i18n'
+
+interface AboutPageProps {
+  params: { lang: Locale }
+}
+
+export default async function AboutPage({ params: { lang } }: AboutPageProps) {
+  const dict = await getDictionary(lang)
+  
+  return (
+    <Layout dict={dict}>
+      {/* 添加更多内容组件 */}
+    </Layout>
+  )
+}
+```
+
+
+### 注意事项
+
+- 所有页面组件必须使用 `"use client"` 如果包含客户端交互
+- 使用 `SectionLayout` 组件来保持页面布局一致性
+- 优先使用现有组件，避免创建重复组件
+- 确保所有翻译文件包含相同的键名
+- 遵循项目的 TypeScript 类型定义
+- 使用现有的 Tailwind CSS 类名保持样式一致
+- 使用 `getHighlightedText` 处理高亮文本
+- 所有页面都需要支持深色模式
+

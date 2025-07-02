@@ -1,0 +1,189 @@
+# Layout Components
+
+This document introduces the layout components in SaaS Starter. These components are located in the `src/components/layout/` directory.
+
+## Layout
+
+Main layout component for wrapping the entire application:
+
+```tsx
+import { Layout } from "@/components/layout/layout";
+
+export default function Page({ params }) {
+  return (
+    <Layout dict={dict}>
+      <main>Page content</main>
+    </Layout>
+  );
+}
+```
+
+### Props
+- `dict` - Internationalization dictionary object
+- `children` - Child component content
+
+## Header
+
+Page header component:
+
+```tsx
+import { Header } from "@/components/layout/header";
+
+<Header
+  dict={dict}
+  transparent={false}
+  fixed={true}
+/>
+```
+
+### Props
+- `dict` - Internationalization dictionary object
+- `transparent` - Whether to use transparent background
+- `fixed` - Whether to fix at the top
+
+### Features
+- Responsive navigation menu
+- Language switcher
+- Theme switcher
+- Mobile menu
+
+## Footer
+
+Page footer component:
+
+```tsx
+import { Footer } from "@/components/layout/footer";
+
+<Footer dict={dict} />
+```
+
+### Props
+- `dict` - Internationalization dictionary object
+
+### Features
+- Navigation links
+- Social media links
+- Copyright information
+- Newsletter subscription form
+
+## SectionLayout
+
+Section layout component for consistent spacing and styling:
+
+```tsx
+import { SectionLayout } from "@/components/layout/section-layout";
+
+<SectionLayout
+  className="bg-gradient"
+  containerClassName="max-w-7xl"
+>
+  <div>Section content</div>
+</SectionLayout>
+```
+
+### Props
+- `className` - Outer container class name
+- `containerClassName` - Inner container class name
+- `children` - Child component content
+
+### Variants
+- Default layout
+- Narrow layout
+- Wide layout
+- Full-width layout
+
+## Best Practices
+
+### Layout Component Usage Guide
+
+1. Page Structure
+```tsx
+<Layout>
+  <Header />
+  <main>
+    <SectionLayout>
+      {/* Section content */}
+    </SectionLayout>
+  </main>
+  <Footer />
+</Layout>
+```
+
+2. Responsive Design
+- Use Tailwind's responsive classes
+- Adapt for mobile and desktop
+- Consider different device layout needs
+
+3. Performance Optimization
+- Use `use client` directive appropriately
+- Avoid unnecessary re-renders
+- Optimize component tree structure
+
+4. Accessibility
+- Use semantic HTML tags
+- Add appropriate ARIA attributes
+- Ensure keyboard navigation support
+
+### Common Use Cases
+
+1. Basic Page Layout
+```tsx
+export default function Page({ params }) {
+  const dict = await getDictionary(params.lang);
+  
+  return (
+    <Layout dict={dict}>
+      <Header dict={dict} />
+      <main>
+        <SectionLayout>
+          <h1>Page Title</h1>
+          <p>Page content</p>
+        </SectionLayout>
+      </main>
+      <Footer dict={dict} />
+    </Layout>
+  );
+}
+```
+
+2. Special Background Section
+```tsx
+<SectionLayout className="bg-gradient-to-r from-primary to-secondary">
+  <div className="text-white">
+    <h2>Title</h2>
+    <p>Content</p>
+  </div>
+</SectionLayout>
+```
+
+3. Narrow Layout Content
+```tsx
+<SectionLayout containerClassName="max-w-2xl">
+  <article>
+    <h1>Blog Title</h1>
+    <p>Blog content</p>
+  </article>
+</SectionLayout>
+```
+
+### Important Notes
+
+1. Layout Composition
+- Avoid nesting multiple Layout components
+- Use SectionLayout variants appropriately
+- Keep layout structure clear
+
+2. Style Isolation
+- Use CSS Modules or Tailwind
+- Avoid global style pollution
+- Maintain component style independence
+
+3. Performance Considerations
+- Avoid deep component trees
+- Use appropriate caching strategies
+- Optimize re-render logic
+
+4. Maintainability
+- Keep code structure clear
+- Add appropriate comments
+- Follow component naming conventions 

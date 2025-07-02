@@ -1,0 +1,16 @@
+# SEO
+
+SEO 对于网页获取自然搜索流量非常重要，项目做了很多 SEO 优化，可以通过简单配置实现。
+
+## Metadata 数据
+在 `dictionaries/[locale].json` 中找到 `metadata` 属性并进行修改即可。
+
+## Robot.txt 和站点地图
+项目提供了自动生成 `robot.txt` 和 `sitemap.xml` 的脚本。
+
+只需要在 `package.json` 中修改`gen:seo`命令的 `SITE_URL` 为您自己的站点地址。
+
+然后运行：
+```npm run gen:seo```
+
+项目将自动生成新的 `robot.txt` 和 `sitemap.xml`。

@@ -1,0 +1,92 @@
+# Content Management
+
+## Local Content Management
+The project supports direct local content management, using markdown files for blog and case content management.
+
+### Blog Posts
+Create new blog posts in `content/blog/`, with an introduction:
+
+```markdown
+---
+title: "Your Blog Post Title"
+date: "2024-01-15"
+excerpt: "Your article brief description"
+author: "Your Name"
+tags: ["SaaS", "Next.js", "Tutorial"]
+readTime: "5 minutes read"
+---
+
+# Your blog post content
+
+Write your content here using Markdown...
+```
+
+### Case Studies
+Create new case studies in `content/cases/`:
+```markdown
+---
+title: "Case Title"
+description: "Case description"
+image: "/images/cases/case1.png"
+externalUrl: "https://example.com"
+tags: ["AI", "Music", "Creativity"]
+---
+
+```
+
+## CMS Integration
+> To facilitate management and collaboration, the project also supports pulling CMS data, currently only supporting Contentful CMS content integration, with more common CMS support to come.
+### Contentful
+#### 1. Configure Contentful Space
+##### 1. Register Contentful and create a space
+If you don't have a Contentful space yet, please:
+- Register for a [Contentful account](https://www.contentful.com/sign-up/)
+- Create a new space (Space)
+
+##### 2. Install Contentful CLI and login
+Install:
+```bash
+npm install -g contentful-cli
+```
+Login:
+```bash
+contentful login
+```
+
+##### 3. Import data model
+The project provides default data types required for blogs and cases, which can be directly imported into Contentful for use.
+```bash
+# Run in the project root directory
+contentful space import --content-file cms/contentful/contentful-models-config.json --space-id your_space_id
+```
+
+##### 4. Create data
+Enter the Contentful console, create the new content you need.
+
+#### 2. Configure environment variables
+Create a `.env` file in your local repository and set your Contentful configuration:
+
+```bash
+CONTENTFUL_SPACE_ID=your_space_id_here
+CONTENTFUL_ACCESS_TOKEN=your_access_token_here
+CONTENTFUL_ENVIRONMENT=master
+```
+
+**Get access token**:
+- Enter the Contentful console
+- Select your space → Settings → API keys
+- Create or use an existing Content Delivery API key
+
+#### 3. Modify dev and build commands
+Enter the project's `package.json`, modify the dev and build commands as follows:
+```json
+...
+"scripts": {
+  ...
+  "dev": "npm run contentful:export && next dev",
+  "build": "npm run contentful:export && next build",
+}
+...
+```
+#### 4. Preview Effect
+Run `npm run dev` to see the project synchronized with the content you created in `Contentful`.

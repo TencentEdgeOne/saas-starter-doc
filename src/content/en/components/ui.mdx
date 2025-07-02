@@ -1,0 +1,303 @@
+# UI Components
+
+This document introduces the basic UI components in SaaS Starter. These components are located in the `src/components/ui/` directory.
+
+## Button Components
+
+### Button
+The main button component with multiple variants:
+
+```tsx
+import { Button } from "@/components/ui/button";
+
+// Default button
+<Button>Default Button</Button>
+
+// Primary button
+<Button variant="primary">Primary Button</Button>
+
+// Gradient button
+<Button variant="gradient">Gradient Button</Button>
+
+// Link button
+<Button variant="link">Link Button</Button>
+```
+
+#### Variant Options
+- `default` - Default style
+- `destructive` - For dangerous operations
+- `outline` - Outline style
+- `secondary` - Secondary button
+- `ghost` - Ghost button
+- `link` - Link style
+- `gradient` - Gradient style
+- `primary` - Primary button
+- `success` - Success state
+- `warning` - Warning state
+
+### PrimaryButton
+Preset primary button component:
+
+```tsx
+import { PrimaryButton } from "@/components/ui/button";
+
+<PrimaryButton>Primary Button</PrimaryButton>
+```
+
+### GradientButton
+Preset gradient button component:
+
+```tsx
+import { GradientButton } from "@/components/ui/button";
+
+<GradientButton>Gradient Button</GradientButton>
+```
+
+## Card Components
+
+### Card
+Standard card component suite:
+
+```tsx
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+
+<Card>
+  <CardHeader>
+    <CardTitle>Title</CardTitle>
+    <CardDescription>Description text</CardDescription>
+  </CardHeader>
+  <CardContent>
+    Card content
+  </CardContent>
+</Card>
+```
+
+### Badge
+Labels and status indicators:
+
+```tsx
+import { Badge } from "@/components/ui/badge";
+
+// Default badge
+<Badge>Default</Badge>
+
+// Success state
+<Badge variant="success">Success</Badge>
+
+// Warning state
+<Badge variant="warning">Warning</Badge>
+```
+
+## Content Display Components
+
+### BlogCard
+Blog post preview card:
+
+```tsx
+import { BlogCard } from "@/components/ui/blog-card";
+
+<BlogCard
+  title="Article Title"
+  description="Article Description"
+  date="2024-03-20"
+  author="Author Name"
+  image="/path/to/image.jpg"
+/>
+```
+
+### FeatureCard
+Feature showcase card:
+
+```tsx
+import { FeatureCard } from "@/components/ui/feature-card";
+
+<FeatureCard
+  icon="Zap"
+  title="Fast Deployment"
+  description="Deploy in minutes"
+/>
+```
+
+### TestimonialsGrid
+User testimonials grid:
+
+```tsx
+import { TestimonialsGrid } from "@/components/ui/testimonials-grid";
+
+<TestimonialsGrid
+  testimonials={[
+    {
+      content: "Testimonial content",
+      author: "User name",
+      role: "Position",
+      avatar: "/path/to/avatar.jpg"
+    }
+  ]}
+/>
+```
+
+## Form Components
+
+### ContactForm
+Contact form component:
+
+```tsx
+import { ContactForm } from "@/components/ui/contact-form";
+
+<ContactForm
+  onSubmit={async (data) => {
+    // Handle form submission
+  }}
+/>
+```
+
+### CompactContactForm
+Compact contact form:
+
+```tsx
+import { CompactContactForm } from "@/components/ui/contact-form";
+
+<CompactContactForm
+  onSubmit={async (data) => {
+    // Handle form submission
+  }}
+/>
+```
+
+## Data Display Components
+
+### StatsSection
+Statistics display:
+
+```tsx
+import { StatsSection } from "@/components/ui/stats-section";
+
+<StatsSection
+  stats={[
+    { label: "Active Users", value: "10k+" },
+    { label: "Downloads", value: "1M+" },
+    { label: "Customer Rating", value: "4.9/5" }
+  ]}
+/>
+```
+
+### CompanyStats
+Company statistics:
+
+```tsx
+import { CompanyStats } from "@/components/ui/company-stats";
+
+<CompanyStats
+  stats={[
+    { label: "Years", value: "10+" },
+    { label: "Clients", value: "1000+" },
+    { label: "Team Size", value: "100+" }
+  ]}
+/>
+```
+
+## Interactive Components
+
+### FAQList
+Frequently asked questions list:
+
+```tsx
+import { FAQList } from "@/components/ui/faq-list";
+
+<FAQList
+  items={[
+    {
+      question: "How to get started?",
+      answer: "Follow the documentation for installation and setup..."
+    }
+  ]}
+/>
+```
+
+### FeaturesGrid
+Features grid:
+
+```tsx
+import { FeaturesGrid } from "@/components/ui/features-grid";
+
+<FeaturesGrid
+  features={[
+    {
+      icon: "Zap",
+      title: "Fast Deployment",
+      description: "Deploy in just a few steps"
+    }
+  ]}
+/>
+```
+
+### PricingTable
+Pricing comparison table:
+
+```tsx
+import { PricingTable } from "@/components/ui/pricing-table";
+
+<PricingTable
+  plans={[
+    {
+      name: "Basic",
+      price: "$99",
+      features: ["Feature 1", "Feature 2"]
+    }
+  ]}
+/>
+```
+
+### Toast
+Notification system:
+
+```tsx
+import { useToast } from "@/components/ui/toast";
+
+const { toast } = useToast();
+
+// Show success notification
+toast({
+  title: "Success",
+  description: "Your changes have been saved",
+  variant: "success"
+});
+```
+
+## Best Practices
+
+### Component Reuse Priority
+1. Use existing components directly
+2. Extend existing components through props
+3. Create variants of existing components
+4. Create new components only when necessary
+
+### Styling Guidelines
+- Use Tailwind CSS classes
+- Use `cn()` utility for conditional styles
+- Follow project color scheme
+- Maintain responsive design
+
+### TypeScript Usage
+- Define interfaces for all props
+- Export type definitions
+- Use type inference
+- Extend existing interfaces
+
+### Performance Optimization
+- Use appropriate loading strategies
+- Optimize image loading
+- Implement suitable caching strategies
+- Minimize bundle size
+
+### Accessibility
+- Add appropriate ARIA labels
+- Ensure keyboard accessibility
+- Provide adequate color contrast
+- Support screen readers 

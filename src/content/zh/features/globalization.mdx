@@ -1,0 +1,67 @@
+# 国际化
+项目默认支持国际化，包含中文和英文，基于 next-i18n 实现。
+
+## 修改文案
+项目中使用字典的键值读取对应的语言文案填充到页面中，如果需要修改某处文案，则需要在源码中找到对应的键值，例如：
+```
+dict.home.bottomCta.description
+```
+在 `dictionaries/` 下的所有翻译文件中找到对应的位置，修改文案即可。
+![](/trans.png)
+
+## 增加语言
+### 使用 AI 编辑器增加语言
+你可以直接在 Cursor 中进行对话来增加语言。
+
+示例 Prompt:
+```
+给项目增加法语支持
+```
+
+### 手动增加语言
+##### 1. 在`dictionaries/`下创建对应语言的翻译配置文件。
+```bash
+# 翻译文件
+dictionaries/[locale].json          # e.g., ja.json, fr.json
+```
+
+##### 2. 更新 `src/lib/i18n.ts`
+增加语言和对应的切换文案。
+```typescript
+// Add new locale to the locales array
+export const locales = ['en', 'zh', 'ja'] as const;  // Add 'ja'
+
+// Add locale display name
+export const localeNames: Record<Locale, string> = {
+  en: 'English',
+  zh: '中文', 
+  ja: '日本語',  // Add new language name
+};
+```
+
+##### 3. 更新`src/lib/dictionaries.ts`
+
+导入对应的配置文件
+```typescript
+const dictionaries = {
+  en: () => import('../../dictionaries/en.json').then((module) => module.default),
+  zh: () => import('../../dictionaries/zh.json').then((module) => module.default),
+  ja: () => import('../../dictionaries/ja.json').then((module) => module.default), // Add new
+};
+```
+
+##### 4. 更新 Contentful 语言设置（可选）
+如果你在项目中使用了内置的 Contentful 集成，则需要对应修改Contentful 空间的国际化设置：
+
+空间设置 -> Locales 中点击新增 locale:
+![](/locale.png)
+新增后将语种对应的枚举值更新到项目的`cms/contentful/contentful2md.js`：
+
+```javascript
+// Language mapping: local language -> Contentful language code
+const LANG_MAPPING = {
+  'en': 'en-US',    // Local English → Contentful English
+  'zh': 'zh-CN'     // Local Chinese → Contentful Chinese
+  // Add new language mappings
+};
+```

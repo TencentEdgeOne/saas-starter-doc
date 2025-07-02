@@ -1,0 +1,189 @@
+# 布局组件
+
+本文档介绍了 SaaS Starter 中的布局组件。这些组件位于 `src/components/layout/` 目录下。
+
+## Layout
+
+主要布局组件，用于包装整个应用：
+
+```tsx
+import { Layout } from "@/components/layout/layout";
+
+export default function Page({ params }) {
+  return (
+    <Layout dict={dict}>
+      <main>页面内容</main>
+    </Layout>
+  );
+}
+```
+
+### 属性
+- `dict` - 国际化字典对象
+- `children` - 子组件内容
+
+## Header
+
+页面头部组件：
+
+```tsx
+import { Header } from "@/components/layout/header";
+
+<Header
+  dict={dict}
+  transparent={false}
+  fixed={true}
+/>
+```
+
+### 属性
+- `dict` - 国际化字典对象
+- `transparent` - 是否透明背景
+- `fixed` - 是否固定在顶部
+
+### 功能
+- 响应式导航菜单
+- 语言切换
+- 主题切换
+- 移动端菜单
+
+## Footer
+
+页面底部组件：
+
+```tsx
+import { Footer } from "@/components/layout/footer";
+
+<Footer dict={dict} />
+```
+
+### 属性
+- `dict` - 国际化字典对象
+
+### 功能
+- 导航链接
+- 社交媒体链接
+- 版权信息
+- 订阅表单
+
+## SectionLayout
+
+区块布局组件，用于统一页面各个区块的间距和样式：
+
+```tsx
+import { SectionLayout } from "@/components/layout/section-layout";
+
+<SectionLayout
+  className="bg-gradient"
+  containerClassName="max-w-7xl"
+>
+  <div>区块内容</div>
+</SectionLayout>
+```
+
+### 属性
+- `className` - 外层容器类名
+- `containerClassName` - 内层容器类名
+- `children` - 子组件内容
+
+### 变体
+- 默认布局
+- 窄布局
+- 宽布局
+- 全宽布局
+
+## 最佳实践
+
+### 布局组件使用指南
+
+1. 页面结构
+```tsx
+<Layout>
+  <Header />
+  <main>
+    <SectionLayout>
+      {/* 区块内容 */}
+    </SectionLayout>
+  </main>
+  <Footer />
+</Layout>
+```
+
+2. 响应式设计
+- 使用 Tailwind 的响应式类
+- 适配移动端和桌面端
+- 考虑不同设备的布局需求
+
+3. 性能优化
+- 合理使用 `use client` 指令
+- 避免不必要的重渲染
+- 优化组件树结构
+
+4. 辅助功能
+- 使用语义化标签
+- 添加适当的 ARIA 属性
+- 确保键盘导航支持
+
+### 常见用例
+
+1. 基本页面布局
+```tsx
+export default function Page({ params }) {
+  const dict = await getDictionary(params.lang);
+  
+  return (
+    <Layout dict={dict}>
+      <Header dict={dict} />
+      <main>
+        <SectionLayout>
+          <h1>页面标题</h1>
+          <p>页面内容</p>
+        </SectionLayout>
+      </main>
+      <Footer dict={dict} />
+    </Layout>
+  );
+}
+```
+
+2. 特殊背景区块
+```tsx
+<SectionLayout className="bg-gradient-to-r from-primary to-secondary">
+  <div className="text-white">
+    <h2>标题</h2>
+    <p>内容</p>
+  </div>
+</SectionLayout>
+```
+
+3. 窄布局内容
+```tsx
+<SectionLayout containerClassName="max-w-2xl">
+  <article>
+    <h1>博客标题</h1>
+    <p>博客内容</p>
+  </article>
+</SectionLayout>
+```
+
+### 注意事项
+
+1. 布局组合
+- 避免嵌套多个 Layout 组件
+- 合理使用 SectionLayout 的变体
+- 保持布局结构清晰
+
+2. 样式隔离
+- 使用 CSS Modules 或 Tailwind
+- 避免全局样式污染
+- 保持组件样式的独立性
+
+3. 性能考虑
+- 避免深层组件树
+- 使用适当的缓存策略
+- 优化重渲染逻辑
+
+4. 维护性
+- 保持代码结构清晰
+- 添加适当的注释
+- 遵循组件命名规范 
